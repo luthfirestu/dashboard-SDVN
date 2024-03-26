@@ -8,10 +8,10 @@ export default function Form() {
     };
 
     return (
-        <div className="col-2">
+        <div>
             <div className="space-y-4">
-                <div className="flex gap-12">
-                    <div className="space-y-3">
+                <div className="flex gap-12">  {/* Gap between row */}
+                    <div className="space-y-3 flex-1">
                         <p className="font-bold">General</p>
                         <div className="flex items-center gap-8"> {/* Flex container for Simulation Name */}
                             <span className="w-1/3">Simulation Name</span> {/* Text */}
@@ -46,7 +46,7 @@ export default function Form() {
                             </label>
                         </div>
                     </div>
-                    <div className="space-y-3">
+                    <div className="space-y-3 flex-1">
                         <p className="font-bold">Routing</p>
                         <div className="flex items-center gap-8"> {/* Flex container for Routing Protocols */}
                             <span className="w-1/3">Routing Protocols</span> {/* Text */}
@@ -71,8 +71,9 @@ export default function Form() {
                         </div>
                     </div>
                 </div>
-                {/* Simulate button */}
-                <button className="btn btn-accent">Simulate</button>
+            </div>
+            <div className="absolute bottom-0 right-0 m-24">
+                <button className="btn btn-accent block">Simulate</button>
             </div>
         </div>
     );
