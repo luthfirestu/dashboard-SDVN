@@ -29,3 +29,14 @@
     opacity: 0;
   }
 }
+
+@keyframes drive {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  .animate-drive {
+    animation: drive 10s linear infinite; /* Adjust the duration and timing function as needed */
+  }
+  

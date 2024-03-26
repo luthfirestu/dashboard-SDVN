@@ -46,6 +46,14 @@ export default function Home() {
                         </tbody>
                     </table>
                     </div>
+                    <div className="join absolute bottom-0 right-0 m-12 ">
+                        <button className="join-item btn">Previous</button>
+                        <button className="join-item btn">1</button>
+                        <button className="join-item btn btn-active">2</button>
+                        <button className="join-item btn">3</button>
+                        <button className="join-item btn">4</button>
+                        <button className="join-item btn">Next</button>
+                    </div>
             </div>
         </main>
     )}

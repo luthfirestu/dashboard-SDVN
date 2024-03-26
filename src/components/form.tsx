@@ -22,7 +22,7 @@ export default function Form() {
                         <div className="flex items-center gap-8"> {/* Flex container for Number of Cars */}
                             <span className="w-1/3">Number of Cars</span> {/* Text */}
                             <label className="input input-bordered flex items-center w-2/3 max-w-1/2"> {/* Input field */}
-                                <input type="text" className="grow" placeholder="daisy@site.com" />
+                                <input type="text" className="grow" placeholder="Example: 30" />
                             </label>
                         </div>
                         <div className="flex items-center gap-8"> {/* Flex container for Topology */}
@@ -36,13 +36,13 @@ export default function Form() {
                         <div className="flex items-center gap-8"> {/* Flex container for Simulation Duration */}
                             <span className="w-1/3">Simulation Duration (ms)</span> {/* Text */}
                             <label className="input input-bordered flex items-center w-2/3"> {/* Input field */}
-                                <input type="text" className="grow" placeholder="ex: 300" />
+                                <input type="text" className="grow" placeholder="Example: 300" />
                             </label>
                         </div>
                         <div className="flex items-center gap-8"> {/* Flex container for Maximum Vehicle Speed */}
                             <span className="w-1/3">Maximum Vehicle Speed (km/h)</span> {/* Text */}
                             <label className="input input-bordered flex items-center w-2/3"> {/* Input field */}
-                                <input type="text" className="grow" placeholder="ex: 80" />
+                                <input type="text" className="grow" placeholder="Example: 80" />
                             </label>
                         </div>
                     </div>
@@ -67,7 +67,7 @@ export default function Form() {
                                 className="range"
                                 onChange={handlePowerChange} // Handle range input change
                             />
-                            <span>{power}</span> {/* Display current power value */}
+                            <span>{power} watt</span> {/* Display current power value */}
                         </div>
                     </div>
                 </div>
