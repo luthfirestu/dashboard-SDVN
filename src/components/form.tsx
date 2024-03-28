@@ -3,9 +3,13 @@ import { useState } from 'react';
 export default function Form() {
     const [power, setPower] = useState(40); // Initial power value
 
-    const handlePowerChange = (event) => {
-        setPower(event.target.value); // Update the power value when the input changes
+    const handlePowerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = parseInt(event.target.value, 10); // Convert string value to integer
+        if (!isNaN(newValue)) { // Check if the conversion was successful
+            setPower(newValue); // Update the power value when the input changes
+        }
     };
+    
 
     return (
         <div>
