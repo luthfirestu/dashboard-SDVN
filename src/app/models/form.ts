@@ -7,7 +7,8 @@ export interface IForm extends Document {
   simulationDuration: number;
   maxVehicleSpeed: number;
   routingProtocols: string;
-  dateCreated: Date; // Include dateCreated field
+  powerThreshold: number;
+  // dateCreated: Date; // Include dateCreated field
 }
 
 const formSchema: Schema<IForm> = new Schema<IForm>({
@@ -43,12 +44,17 @@ const formSchema: Schema<IForm> = new Schema<IForm>({
     type: String,
     required: [true, "Routing Protocols is required."],
   },
+  powerThreshold: {
+    type: Number,
+    required: [true, "Power Threshold is required."],
+  }
 
-  dateCreated: {
-    type: Date,
-    default: Date.now, // Set default value to current date
-    select: false, // Exclude from query results
-  },
+
+  // dateCreated: {
+  //   type: Date,
+  //   default: Date.now, // Set default value to current date
+  //   select: false, // Exclude from query results
+  // },
 });
 
 const Form =
