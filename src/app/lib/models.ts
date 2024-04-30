@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import connectDB from "../lib/mongodb";
 
 const simulationSchema = new mongoose.Schema(
   {

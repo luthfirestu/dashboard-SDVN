@@ -1,52 +1,11 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { addSimulation } from '@/app/lib/actions';
 
-export default function Form() {
-    const [formData, setFormData] = useState({
-        simulationName: '',
-        numberOfCars: '',
-        topology: '',
-        simulationDuration: '',
-        maxVehicleSpeed: '',
-        routingProtocols: '',
-        powerThreshold: '',
-    });
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        try {
-            const response = await fetch('/api/input', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await response.json();
-            console.log(data);
-            // Lakukan sesuatu setelah data berhasil disimpan ke dalam database
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
-
-    // const [power, setPower] = useState(40); // Initial power value
-
-    // const handlePowerChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //     const newValue = parseInt(event.target.value, 10); // Convert string value to integer
-    //     if (!isNaN(newValue)) { // Check if the conversion was successful
-    //         setPower(newValue); // Update the power value when the input changes
-    //     }
-    // };
-
+const NewSimulation = () => {
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form action={addSimulation}>
                 <div className="space-y-4">
                     <div className="flex flex-col lg:flex-row gap-12"> {/* Gap between row */}
                         <div className="space-y-3 flex-1">
@@ -58,8 +17,6 @@ export default function Form() {
                                     id="simulationName"
                                     type="text"
                                     name="simulationName"
-                                    value={formData.simulationName}
-                                    onChange={handleChange}
                                     placeholder="Example: 10 Cars in Manhattan"
                                     className="grow"
                                     />
@@ -71,9 +28,7 @@ export default function Form() {
                                     <input
                                     id="numberOfCars"
                                     type="number"
-                                    name="numberOfCars"
-                                    value={formData.numberOfCars}
-                                    onChange={handleChange}
+                                    name="numberOfCars"s
                                     className="grow"
                                     placeholder="Example: 30"
                                     />
@@ -83,9 +38,7 @@ export default function Form() {
                                 <span className="w-full lg:w-1/3">Topology</span> {/* Text */}
                                 <select
                                 id="topology"
-                                name="topology" 
-                                value={formData.topology} 
-                                onChange={handleChange} 
+                                name="topology" s
                                 className="select select-bordered w-full lg:w-2/3 max-w-1/2">
                                     <option disabled value="">Select Topology</option>
                                     <option value="Bidirectional Highway 4 Plane">Bidirectional Highway 4 Plane</option>
@@ -99,8 +52,6 @@ export default function Form() {
                                     id="simulationDuration"
                                     type="number"
                                     name="simulationDuration"
-                                    value={formData.simulationDuration}
-                                    onChange={handleChange}
                                     className="grow"
                                     placeholder="Example: 300" 
                                     min={300}/>
@@ -114,8 +65,6 @@ export default function Form() {
                                     id="maxVehicleSpeed"
                                     type="number"
                                     name="maxVehicleSpeed"
-                                    value={formData.maxVehicleSpeed}
-                                    onChange={handleChange}
                                     className="grow"
                                     placeholder="Example: 80"
                                     min={60}
@@ -131,8 +80,6 @@ export default function Form() {
                                 <select
                                 id="routingProtocols"
                                 name="routingProtocols"
-                                value={formData.routingProtocols}
-                                onChange={handleChange}
                                 className="select select-bordered w-full lg:w-2/3">
                                     <option disabled value="">Select Routing Protocols</option>
                                     <option value="Open Flow v1">Open Flow v1</option>
@@ -146,8 +93,6 @@ export default function Form() {
                                     id="powerThreshold"
                                     type="number"
                                     name="powerThreshold"
-                                    value={formData.powerThreshold}
-                                    onChange={handleChange}
                                     placeholder="80"
                                     className="grow"
                                     min={0}
@@ -193,3 +138,4 @@ export default function Form() {
     </div>
     );
 }
+export default NewSimulation;

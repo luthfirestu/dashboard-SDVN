@@ -1,8 +1,8 @@
 'use client'
 import { useRouter } from "next/navigation";
-import Form from "@/components/form";
+import NewSimulation from "@/components/newSimulation";
 
-export default function Home() {
+const NewSimulationPage = () => {
     const router = useRouter(); // Initialize useRouter
 
     const goBack = () => {
@@ -19,9 +19,11 @@ export default function Home() {
                     <p className="text-accent text-lg">New Configuration</p>
                 </div>
                 <div className="m-4">
-                    <Form />
+                    <NewSimulation />
                 </div>
             </div>
         </main>
     );
 }
+
+export default NewSimulationPage;
