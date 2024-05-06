@@ -47,10 +47,14 @@ const DetailPage = async ({ params }) => {
                         <td>Power Threshold</td>
                         <td>{name.powerThreshold}</td>
                     </tr>
+                    <tr>
+                        <td>Date Created</td>
+                        <td>{name.createdAt?.toString().slice(4, 16)}</td>
+                    </tr>
                 </tbody>
             </table>
             <h1 className="text-3xl mt-8">Simulation Result</h1>
-            <div role="tablist" className="tabs tabs-accent tabs-boxed mt-4 w-1/2">
+            <div role="tablist" className="tabs tabs-accent tabs-boxed mt-4 w-auto">
                 <a role="tab" className="tab">Vehicle Traffic</a>
                 <a role="tab" className="tab tab-active">Network Traffic</a>
                 <a role="tab" className="tab">Forecasting</a>

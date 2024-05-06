@@ -1,8 +1,8 @@
 import { Simulation } from "./models";
 import connectDB from "./mongodb";
 
-
-export const fetchNames = async (q, page) => {
+// mengambil data simulation name dari database untuk ditampilkan ke historylist
+export const fetchNames = async (q: any, page: any) => {
     console.log(q);
     const regex = new RegExp(q, "i");
   
@@ -20,6 +20,8 @@ export const fetchNames = async (q, page) => {
       throw new Error("Failed to fetch names!");
     }
   };
+
+//mengambil data simulasi untuk di tampilkan ke detail simulasi setelah di klik
 export const fetchName = async (id: string) => {
     try {
         connectDB();
@@ -31,3 +33,16 @@ export const fetchName = async (id: string) => {
     }
 
 }
+
+//mengambil data hasil simulasi 
+//1 Vechicle Traffic
+// export const fetchVechicleTraffic = async (id: string) => {
+//     try {
+//         connectDB();
+//         const data = await VehicleTraffic.findById(id);
+//         return data;
+//     } catch (err) {
+//         console.log(err);
+//         throw new Error("Error fetching vehicle traffic data");
+//     }
+// }

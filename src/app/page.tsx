@@ -21,10 +21,12 @@ export default function Home() {
       />
       <div className="m-12 w-1/2 space-y-4 absolute top-1/3">
         <h1 className="text-accent font-bold text-5xl">SDVN Testbed</h1>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, to jdicbebacibceuiebcibc</p>
-        <button onClick={() => router.push("/simulation/history")} className="btn btn-accent mt-4 bg-opacity-75">Get Started</button>
+        <p>Join us on the journey towards a safer, smarter, and more efficient transportation ecosystem. Experience the power of SDVN Testbed today. Start Exploring Now!</p>
+        <Link href="/simulation/history">
+          <button className="btn btn-accent mt-4 bg-opacity-75">Get Started</button>
+        </Link>
       </div>
-      <img src="self-driving-car.svg" alt="self-driving-car image" className="absolute bottom-0 right-0 mr-12 z-0 w-1/2 w-96" />
+      <img src="self-driving-car.svg" alt="self-driving-car image" className="absolute bottom-0 right-0 mr-12 z-0 w-1/3" />
     </main>
   );
 }

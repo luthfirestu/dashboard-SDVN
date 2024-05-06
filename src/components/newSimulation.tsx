@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { addSimulation } from '@/app/lib/actions';
 
@@ -28,7 +28,7 @@ const NewSimulation = () => {
                                     <input
                                     id="numberOfCars"
                                     type="number"
-                                    name="numberOfCars"s
+                                    name="numberOfCars"
                                     className="grow"
                                     placeholder="Example: 30"
                                     />
@@ -38,7 +38,7 @@ const NewSimulation = () => {
                                 <span className="w-full lg:w-1/3">Topology</span> {/* Text */}
                                 <select
                                 id="topology"
-                                name="topology" s
+                                name="topology"
                                 className="select select-bordered w-full lg:w-2/3 max-w-1/2">
                                     <option disabled value="">Select Topology</option>
                                     <option value="Bidirectional Highway 4 Plane">Bidirectional Highway 4 Plane</option>
