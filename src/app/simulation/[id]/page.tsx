@@ -1,10 +1,22 @@
-import { fetchName } from "@/app/lib/data";
+import { fetchImagePosition, fetchImageSpeed, fetchName } from "@/app/lib/data";
 import Link from 'next/link';
+import React from 'react';
 
-const DetailPage = async ({ params }) => {
+type DetailPageParams = {
+    params: {
+      id: string;
+    };
+  };
+
+// This component can be a React Server Component
+const DetailPage = async ({ params }: DetailPageParams) => {
     const { id } = params;
     const name = await fetchName(id);
-
+    const pngPositionBuffer: Buffer = await fetchImagePosition(id);
+    const pngSpeedBuffer: Buffer = await fetchImageSpeed(id)
+    // Convert buffer to base64
+    const imagePositionBase64 = pngPositionBuffer.toString('base64');
+    const imageSpeedBase64 = pngSpeedBuffer.toString('base64')
     return (
         <main className="m-12">
             <Link href="/simulation/history">
@@ -60,8 +72,14 @@ const DetailPage = async ({ params }) => {
                 <a role="tab" className="tab">Forecasting</a>
                 <a role="tab" className="tab">Power Consumption</a>
             </div>
+            <div>
+                <h1>Simulation Result Vehicle Position</h1>
+                <img src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
+                <h1>Simulation Result Vehicle Speed</h1>
+                <img src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed"/>
+            </div>
         </main>
     );
-}
+};
 
 export default DetailPage;

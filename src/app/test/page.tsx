@@ -1,9 +1,17 @@
 import Sidebar from "@/components/sidebar";
+import { fetchImage } from "../lib/fetchImage/fetch";
 
-export default function Home() {
+const TestPage = async ({ params }) => {
+    useEffect (() => {
+        if (id) {
+            const png = await fetchImage(id)
+            
+        }
+    })
+    
     return (
         <main>
-            <Sidebar />
+            {png.data}
         </main>
     );
 }
