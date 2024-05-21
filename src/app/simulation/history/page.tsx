@@ -4,8 +4,13 @@ import Pagination from "@/components/pagination";
 import { fetchNames } from '@/app/lib/data';
 import { deleteSimulation } from "@/app/lib/actions";
 import Link from 'next/link';
+import { ParsedUrlQuery } from 'querystring';
 
-const HistoryPage = async ({ searchParams }) => {
+type SearchParams = {
+  q?: string;
+  page?: string;
+};
+const HistoryPage = async ({ searchParams }: { searchParams: SearchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
   const { count, names } = await fetchNames(q, page);
@@ -17,7 +22,7 @@ const HistoryPage = async ({ searchParams }) => {
         <Link href="/simulation/new">
           <button className="btn btn-accent relative mt-8 btn-md">+ New Configuration</button>
         </Link>
-        <div className="overflow-x-auto mt-4">
+        <div className="overflow-x-auto mt-4 ">
           <table className="table table-zebra">
             <thead>
               <tr>

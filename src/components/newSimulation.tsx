@@ -43,6 +43,7 @@ const NewSimulation = () => {
                                     <option disabled value="">Select Topology</option>
                                     <option value="Bidirectional Highway 4 Plane">Bidirectional Highway 4 Plane</option>
                                     <option value="Bidirectional Highway 6 Plane">Bidirectional Highway 6 Plane</option>
+                                    <option value="Manhattan">Manhattan</option>
                                 </select>
                             </div>
                             <div className="flex flex-col lg:flex-row items-center gap-8"> {/* Flex container for Simulation Duration */}
@@ -93,7 +94,7 @@ const NewSimulation = () => {
                                     id="powerThreshold"
                                     type="number"
                                     name="powerThreshold"
-                                    placeholder="80"
+                                    placeholder="65"
                                     className="grow"
                                     min={0}
                                     max={70}
