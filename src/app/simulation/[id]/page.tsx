@@ -1,4 +1,4 @@
-import { fetchImagePosition, fetchImageSpeed, fetchName } from "@/app/lib/data";
+import { fetchImagePosition, fetchImageRSSI, fetchImageSpeed, fetchName } from "@/app/lib/data";
 import Link from 'next/link';
 import React from 'react';
 
@@ -13,10 +13,12 @@ const DetailPage = async ({ params }: DetailPageParams) => {
     const { id } = params;
     const name = await fetchName(id);
     const pngPositionBuffer: Buffer = await fetchImagePosition(id);
-    const pngSpeedBuffer: Buffer = await fetchImageSpeed(id)
+    const pngSpeedBuffer: Buffer = await fetchImageSpeed(id);
+    const pngRSSIBuffer: Buffer = await fetchImageRSSI(id);
     // Convert buffer to base64
     const imagePositionBase64 = pngPositionBuffer.toString('base64');
-    const imageSpeedBase64 = pngSpeedBuffer.toString('base64')
+    const imageSpeedBase64 = pngSpeedBuffer.toString('base64');
+    const imageRSSIBase64 = pngRSSIBuffer.toString('base64');
     return (
         <main className="m-12">
             <Link href="/simulation/history">
@@ -77,6 +79,8 @@ const DetailPage = async ({ params }: DetailPageParams) => {
                 <img src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
                 <h1>Simulation Result Vehicle Speed</h1>
                 <img src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed"/>
+                <h1>Simulation Result RSSI</h1>
+                <img src={`data:image/png;base64,${imageRSSIBase64}`} alt="Simulation Result RSSI"/>
             </div>
         </main>
     );

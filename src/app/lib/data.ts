@@ -108,6 +108,40 @@ export const fetchImageSpeed = async (id: any): Promise<Buffer> => {
   }
 };
 
+export const fetchImageRSSI = async (id: any): Promise<Buffer> => {
+  try {
+    // Ensure the database is connected
+    await connectDB();
+
+    // Access the native MongoDB driver from the Mongoose connection
+    const db = mongoose.connection.db;
+    const bucket = new GridFSBucket(db, { bucketName: 'rssi' });
+
+    // Open a download stream for the file with the specified id
+    const fileStream = bucket.openDownloadStream(new ObjectId(id));
+
+    // Return a promise that resolves with the file data
+    return new Promise((resolve, reject) => {
+      const chunks: Array<any> = [];
+      fileStream.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      fileStream.on('error', (err:any) => {
+        if (err.code === 'ENOENT') {
+          reject(new Error('File not found'));
+        } else {
+          reject(err);
+        }
+      });
+      fileStream.on('end', () => {
+        resolve(Buffer.concat(chunks));
+      });
+    });
+  } catch (err) {
+    console.error('Error fetching image:', err);
+    throw new Error("Error fetching bucket id");
+  }
+};
 // export const fetchChunk = async (id: string) => {
 //     try {
 //         connectDB();
