@@ -3,7 +3,7 @@ import connectDB from "@/app/lib/mongodb";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Simulation } from  "./models";
-export const addSimulation = async (formData) => {
+export const addSimulation = async (formData: any) => {
     const { simulationName, numberOfCars, topology, simulationDuration, maxVehicleSpeed,routingProtocols, powerThreshold} =
       Object.fromEntries(formData);
   
@@ -30,7 +30,7 @@ export const addSimulation = async (formData) => {
     redirect("/simulation/history");
   };
 
-export const deleteSimulation = async (formData) => {
+export const deleteSimulation = async (formData:any) => {
   const { id } = Object.fromEntries(formData);
 
   try {

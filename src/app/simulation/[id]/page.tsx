@@ -1,12 +1,13 @@
 import { fetchImagePosition, fetchImageRSSI, fetchImageSpeed, fetchName } from "@/app/lib/data";
 import Link from 'next/link';
 import React from 'react';
+import TabHistory from '@/components/tab';
 
 type DetailPageParams = {
     params: {
       id: string;
     };
-  };
+};
 
 // This component can be a React Server Component
 const DetailPage = async ({ params }: DetailPageParams) => {
@@ -15,10 +16,41 @@ const DetailPage = async ({ params }: DetailPageParams) => {
     const pngPositionBuffer: Buffer = await fetchImagePosition(id);
     const pngSpeedBuffer: Buffer = await fetchImageSpeed(id);
     const pngRSSIBuffer: Buffer = await fetchImageRSSI(id);
+    
     // Convert buffer to base64
     const imagePositionBase64 = pngPositionBuffer.toString('base64');
     const imageSpeedBase64 = pngSpeedBuffer.toString('base64');
     const imageRSSIBase64 = pngRSSIBuffer.toString('base64');
+
+    const tab1Content = (
+        <div>
+            <h1>Simulation Result Vehicle Position</h1>
+            <img src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
+        </div>
+    );
+
+    const tab2Content = (
+        <div>
+            <h1>Simulation Result Vehicle Speed</h1>
+            <img src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed" />
+        </div>
+    );
+
+    const tab3Content = (
+        <div>
+            <h1>Simulation Result RSSI</h1>
+            <img src={`data:image/png;base64,${imageRSSIBase64}`} alt="Simulation Result RSSI" />
+        </div>
+    );
+
+    const tab4Content = (
+        <div>
+            <h1>Simulation Result Power Consumption</h1>
+            {/* Placeholder content for Power Consumption */}
+            <p>Power consumption data will be displayed here.</p>
+        </div>
+    );
+
     return (
         <main className="m-12">
             <Link href="/simulation/history">
@@ -68,20 +100,12 @@ const DetailPage = async ({ params }: DetailPageParams) => {
                 </tbody>
             </table>
             <h1 className="text-3xl mt-8">Simulation Result</h1>
-            <div role="tablist" className="tabs tabs-accent tabs-boxed mt-4 w-auto">
-                <a role="tab" className="tab">Vehicle Traffic</a>
-                <a role="tab" className="tab tab-active">Network Traffic</a>
-                <a role="tab" className="tab">Forecasting</a>
-                <a role="tab" className="tab">Power Consumption</a>
-            </div>
-            <div>
-                <h1>Simulation Result Vehicle Position</h1>
-                <img src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
-                <h1>Simulation Result Vehicle Speed</h1>
-                <img src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed"/>
-                <h1>Simulation Result RSSI</h1>
-                <img src={`data:image/png;base64,${imageRSSIBase64}`} alt="Simulation Result RSSI"/>
-            </div>
+            <TabHistory 
+                tab1Content={tab1Content} 
+                tab2Content={tab2Content} 
+                tab3Content={tab3Content}
+                tab4Content={tab4Content}
+            />
         </main>
     );
 };

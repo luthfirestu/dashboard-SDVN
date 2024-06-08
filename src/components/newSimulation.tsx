@@ -30,7 +30,7 @@ const NewSimulation = () => {
                                     type="number"
                                     name="numberOfCars"
                                     className="grow"
-                                    placeholder="Example: 30"
+                                    placeholder="maximum 20 cars"
                                     />
                                 </label>
                             </div>
@@ -54,7 +54,7 @@ const NewSimulation = () => {
                                     type="number"
                                     name="simulationDuration"
                                     className="grow"
-                                    placeholder="Example: 300" 
+                                    placeholder="min 300 ms" 
                                     min={300}/>
                                     ms
                                 </label>
@@ -67,7 +67,7 @@ const NewSimulation = () => {
                                     type="number"
                                     name="maxVehicleSpeed"
                                     className="grow"
-                                    placeholder="Example: 80"
+                                    placeholder="minimum 60 maximum 80"
                                     min={60}
                                     max={80} />
                                     km/h
@@ -94,11 +94,11 @@ const NewSimulation = () => {
                                     id="powerThreshold"
                                     type="number"
                                     name="powerThreshold"
-                                    placeholder="65"
+                                    placeholder="minimum 0 maximum 35"
                                     className="grow"
                                     min={0}
-                                    max={70}
-                                    />
+                                    max={35}
+                                /> dB
                                 </label>
                             </div>
 
