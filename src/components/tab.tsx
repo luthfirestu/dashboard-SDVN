@@ -16,28 +16,28 @@ const TabHistory = ({ tab1Content, tab2Content, tab3Content, tab4Content }: any)
                     className={`tab tab-lifted ${activeTab === "tab1" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("tab1")}
                 >
-                    Vehicle Position
+                    Throughput
                 </button>
                 <button
                     role="tab"
                     className={`tab tab-lifted ${activeTab === "tab2" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("tab2")}
                 >
-                    Vehicle Speed
+                    RTT
                 </button>
                 <button
                     role="tab"
                     className={`tab tab-lifted ${activeTab === "tab3" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("tab3")}
                 >
-                    RSSI Result
+                    Power
                 </button>
                 <button
                     role="tab"
                     className={`tab tab-lifted ${activeTab === "tab4" ? "tab-active" : ""}`}
                     onClick={() => handleTabClick("tab4")}
                 >
-                    Power Consumption
+                    Mobility Component
                 </button>
             </div>
             <div>

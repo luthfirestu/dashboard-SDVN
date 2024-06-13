@@ -12,7 +12,7 @@ const Pagination = ({ count }: PaginationProps) => {
   const pathname = usePathname();
 
   const page = parseInt(searchParams.get("page") || "1");
-  const ITEM_PER_PAGE = 5;
+  const ITEM_PER_PAGE = 10;
   const totalPages = Math.ceil(count / ITEM_PER_PAGE);
 
   const params = new URLSearchParams(searchParams);
