@@ -34,10 +34,15 @@ const simulationSchema = new mongoose.Schema(
       type: String,
       required: [true, "Routing Protocols is required."],
     },
-    powerThreshold: {
+    minPower: {
       type: Number,
-      required: [true, "Power Threshold is required."],
+      required: [true, "maxPower is required."],
     },
+    maxPower: {
+      type: Number,
+      required: [true, "minPower is required"],
+    }
+    
   },
   { timestamps: true }
 );

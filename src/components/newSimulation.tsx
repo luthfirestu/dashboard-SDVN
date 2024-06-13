@@ -88,35 +88,34 @@ const NewSimulation = () => {
                                 </select>
                             </div>
                             <div className="flex flex-col lg:flex-row items-center gap-8"> {/* Flex container for Simulation Name */}
-                                <span className="w-full lg:w-1/3">Power Threshold</span> {/* Text */}
+                                <span className="w-full lg:w-1/3">Minimum Power</span> {/* Text */}
                                 <label className="input input-bordered flex items-center w-full lg:w-2/3"> {/* Input field */}
                                     <input
-                                    id="powerThreshold"
+                                    id="minPower"
                                     type="number"
-                                    name="powerThreshold"
-                                    placeholder="minimum 0 maximum 35"
+                                    name="minPower"
+                                    placeholder="minimum 0 dBm"
                                     className="grow"
                                     min={0}
                                     max={35}
-                                /> dB
+                                /> dBm
+                                </label>
+                            </div>
+                            <div className="flex flex-col lg:flex-row items-center gap-8"> {/* Flex container for Simulation Name */}
+                                <span className="w-full lg:w-1/3">Maximum Power</span> {/* Text */}
+                                <label className="input input-bordered flex items-center w-full lg:w-2/3"> {/* Input field */}
+                                    <input
+                                    id="maxPower"
+                                    type="number"
+                                    name="maxPower"
+                                    placeholder="max 35 dBm"
+                                    className="grow"
+                                    min={0}
+                                    max={35}
+                                /> dBm
                                 </label>
                             </div>
 
-
-                        {/* power adjustment slider fix next*/}
-                            {/* <p className='font-bold'>Power Adjustment</p> */}
-                                {/* <div className="flex flex-col lg:flex-row items-center gap-8"> Flex container for Power Adjustment */}
-                                    {/* <span className="w-full lg:w-1/3">Threshold</span> Text */}
-                                    {/* <input */}
-                                        {/* type="range"  */}
-                                        {/* min={0} 
-                                        max={100} 
-                                        value={power} 
-                                        className="range"
-                                        onChange={handlePowerChange} // Handle range input change
-                                    /> */}
-                                    {/* <span>{power} watt</span> {/* Display current power value */}
-                                {/* </div> */}
                         </div>
                     </div>
                 </div>
