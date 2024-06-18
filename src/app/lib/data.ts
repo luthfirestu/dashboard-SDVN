@@ -8,7 +8,7 @@ export const fetchNames = async (q: any, page: any) => {
     console.log(q);
     const regex = new RegExp(q, "i");
   
-    const ITEM_PER_PAGE = 5;
+    const ITEM_PER_PAGE = 9;
   
     try {
       connectDB();
@@ -116,6 +116,110 @@ export const fetchImageRSSI = async (id: any): Promise<Buffer> => {
     // Access the native MongoDB driver from the Mongoose connection
     const db = mongoose.connection.db;
     const bucket = new GridFSBucket(db, { bucketName: 'rssi' });
+
+    // Open a download stream for the file with the specified id
+    const fileStream = bucket.openDownloadStream(new ObjectId(id));
+
+    // Return a promise that resolves with the file data
+    return new Promise((resolve, reject) => {
+      const chunks: Array<any> = [];
+      fileStream.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      fileStream.on('error', (err:any) => {
+        if (err.code === 'ENOENT') {
+          reject(new Error('File not found'));
+        } else {
+          reject(err);
+        }
+      });
+      fileStream.on('end', () => {
+        resolve(Buffer.concat(chunks));
+      });
+    });
+  } catch (err) {
+    console.error('Error fetching image:', err);
+    throw new Error("Error fetching bucket id");
+  }
+};
+
+// fetch iperf plot
+export const fetchImageThroughput = async (id: any): Promise<Buffer> => {
+  try {
+    // Ensure the database is connected
+    await connectDB();
+
+    // Access the native MongoDB driver from the Mongoose connection
+    const db = mongoose.connection.db;
+    const bucket = new GridFSBucket(db, { bucketName: 'iperf' });
+
+    // Open a download stream for the file with the specified id
+    const fileStream = bucket.openDownloadStream(new ObjectId(id));
+
+    // Return a promise that resolves with the file data
+    return new Promise((resolve, reject) => {
+      const chunks: Array<any> = [];
+      fileStream.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      fileStream.on('error', (err:any) => {
+        if (err.code === 'ENOENT') {
+          reject(new Error('File not found'));
+        } else {
+          reject(err);
+        }
+      });
+      fileStream.on('end', () => {
+        resolve(Buffer.concat(chunks));
+      });
+    });
+  } catch (err) {
+    console.error('Error fetching image:', err);
+    throw new Error("Error fetching bucket id");
+  }
+}
+export const fetchImageRtt = async (id: any): Promise<Buffer> => {
+  try {
+    // Ensure the database is connected
+    await connectDB();
+
+    // Access the native MongoDB driver from the Mongoose connection
+    const db = mongoose.connection.db;
+    const bucket = new GridFSBucket(db, { bucketName: 'ping' });
+
+    // Open a download stream for the file with the specified id
+    const fileStream = bucket.openDownloadStream(new ObjectId(id));
+
+    // Return a promise that resolves with the file data
+    return new Promise((resolve, reject) => {
+      const chunks: Array<any> = [];
+      fileStream.on('data', (chunk) => {
+        chunks.push(chunk);
+      });
+      fileStream.on('error', (err:any) => {
+        if (err.code === 'ENOENT') {
+          reject(new Error('File not found'));
+        } else {
+          reject(err);
+        }
+      });
+      fileStream.on('end', () => {
+        resolve(Buffer.concat(chunks));
+      });
+    });
+  } catch (err) {
+    console.error('Error fetching image:', err);
+    throw new Error("Error fetching bucket id");
+  }
+};
+export const fetchImagePower = async (id: any): Promise<Buffer> => {
+  try {
+    // Ensure the database is connected
+    await connectDB();
+
+    // Access the native MongoDB driver from the Mongoose connection
+    const db = mongoose.connection.db;
+    const bucket = new GridFSBucket(db, { bucketName: 'power' });
 
     // Open a download stream for the file with the specified id
     const fileStream = bucket.openDownloadStream(new ObjectId(id));

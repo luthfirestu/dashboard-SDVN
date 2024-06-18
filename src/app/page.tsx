@@ -51,15 +51,14 @@ export default function Home() {
     <main className="mx-8 mt-80">
       <img 
         className={`absolute top-0 right-0 mr-0 z-0 w-1/2 ${loaded ? 'fade-in' : 'fade-out'}`} 
-        src="vector.svg" 
-        alt="vector image" 
+        src="vector.svg"
+        alt="vector image"
       />
       <div className="m-12 w-1/2 space-y-4 absolute top-1/3">
         <h1 className="text-accent font-bold text-5xl">SDVN Testbed</h1>
         <p>Join us on the journey towards a safer, smarter, and more efficient transportation ecosystem. Experience the power of SDVN Testbed today. Start Exploring Now!</p>
         <button onClick={handleScrollToSection} className="btn btn-accent mt-4 bg-opacity-75">Learn more</button>
       </div>
-      
       <div ref={sumoSectionRef} className="m-12 space-y-4 relative top-[480px] pb-12">
         <h1 className="text-accent font-bold text-5xl">Powered by Mininet WiFi and SUMO</h1>
         <p>Our SDVN Testbed leverages the power of Mininet WiFi and SUMO (Simulation of Urban MObility) to create a realistic and dynamic simulation environment for vehicular networks:</p>

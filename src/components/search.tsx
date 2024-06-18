@@ -24,9 +24,9 @@ const Search = ({ placeholder }) => {
 
   return (
     <div className="flex gap-2 items-center">
-      <MdSearch />
+      <MdSearch className="w-12 h-6" />
       <input
-        className="input input-bordered input-sm"
+        className="input input-bordered input-sm w-1/2 h-12"
         type="text"
         placeholder={placeholder}
         onChange={handleSearch}

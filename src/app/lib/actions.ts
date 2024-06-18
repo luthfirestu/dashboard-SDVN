@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Simulation } from  "./models";
 export const addSimulation = async (formData: any) => {
-    const { simulationName, numberOfCars, topology, simulationDuration, maxVehicleSpeed,routingProtocols, powerThreshold} =
+    const { simulationName, numberOfCars, topology, simulationDuration, maxVehicleSpeed,routingProtocols, minPower, maxPower} =
       Object.fromEntries(formData);
   
     try {
@@ -17,7 +17,8 @@ export const addSimulation = async (formData: any) => {
         simulationDuration,
         maxVehicleSpeed,
         routingProtocols,
-        powerThreshold,
+        minPower,
+        maxPower
       });
   
       await newSimulation.save();

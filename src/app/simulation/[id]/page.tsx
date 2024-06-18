@@ -1,4 +1,4 @@
-import { fetchImagePosition, fetchImageRSSI, fetchImageSpeed, fetchName } from "@/app/lib/data";
+import { fetchImagePosition, fetchImageRSSI, fetchImageSpeed, fetchName, fetchImagePower, fetchImageThroughput, fetchImageRtt } from "@/app/lib/data";
 import Link from 'next/link';
 import React from 'react';
 import TabHistory from '@/components/tab';
@@ -16,38 +16,47 @@ const DetailPage = async ({ params }: DetailPageParams) => {
     const pngPositionBuffer: Buffer = await fetchImagePosition(id);
     const pngSpeedBuffer: Buffer = await fetchImageSpeed(id);
     const pngRSSIBuffer: Buffer = await fetchImageRSSI(id);
+    const pngPowerBuffer: Buffer = await fetchImagePower(id);
+    const pngThroughputBuffer: Buffer = await fetchImageThroughput(id);
+    const pngRttBuffer: Buffer = await fetchImageRtt(id);
     
     // Convert buffer to base64
     const imagePositionBase64 = pngPositionBuffer.toString('base64');
     const imageSpeedBase64 = pngSpeedBuffer.toString('base64');
     const imageRSSIBase64 = pngRSSIBuffer.toString('base64');
+    const imagePowerBase64 = pngPowerBuffer.toString('base64');
+    const imageThroughputBase64 = pngThroughputBuffer.toString('base64');
+    const imageRttBase64 = pngRttBuffer.toString('base64');
 
     const tab1Content = (
         <div>
-            <h1>Simulation Result Vehicle Position</h1>
-            <img src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
+            <h1>Simulation Result Throughput per Cars</h1>
+            <img className="w-1/2" src={`data:image/png;base64,${imageThroughputBase64}`} alt="Simulation Result Throughput" />
         </div>
     );
 
     const tab2Content = (
         <div>
-            <h1>Simulation Result Vehicle Speed</h1>
-            <img src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed" />
+            <h1>Simulation Result Round Trip Time from Ping</h1>
+            <img className="w-1/2" src={`data:image/png;base64,${imageRttBase64}`} alt="Simulation Result RTT" />
         </div>
     );
 
     const tab3Content = (
         <div>
-            <h1>Simulation Result RSSI</h1>
-            <img src={`data:image/png;base64,${imageRSSIBase64}`} alt="Simulation Result RSSI" />
+            <h1>Simulation Result Transmit Power</h1>
+            <img src={`data:image/png;base64,${imagePowerBase64}`} alt="Simulation Result Transmit Power" />
+            <h1 className="mr-2 relative">Simulation Result RSSI</h1>
+            <img className="w-1/2" src={`data:image/png;base64,${imageRSSIBase64}`} alt="Simulation Result RSSI" />
         </div>
     );
 
     const tab4Content = (
         <div>
-            <h1>Simulation Result Power Consumption</h1>
-            {/* Placeholder content for Power Consumption */}
-            <p>Power consumption data will be displayed here.</p>
+            <h1>Simulation Result Vehicle Position</h1>
+            <img className="w-1/2" src={`data:image/png;base64,${imagePositionBase64}`} alt="Simulation Result Position" />
+            <h1 className="mr-2 relative">Simulation Result Vehicle Speed</h1>
+            <img className="w-1/2" src={`data:image/png;base64,${imageSpeedBase64}`} alt="Simulation Result Speed" />
         </div>
     );
 
@@ -90,8 +99,12 @@ const DetailPage = async ({ params }: DetailPageParams) => {
                         <td>{name.routingProtocols}</td>
                     </tr>
                     <tr>
-                        <td>Power Threshold</td>
-                        <td>{name.powerThreshold}</td>
+                        <td>Minimum Power</td>
+                        <td>{name.minPower}</td>
+                    </tr>
+                    <tr>
+                        <td>Maximum Power</td>
+                        <td>{name.maxPower}</td>
                     </tr>
                     <tr>
                         <td>Date Created</td>
